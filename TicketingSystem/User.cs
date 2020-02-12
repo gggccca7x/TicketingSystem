@@ -27,7 +27,7 @@ namespace TicketingSystem
         public string Name { get; set; }
         public string TicketIDs { get; set; }
 
-        private List<Ticket> Tickets { get; set; }
+        private List<Ticket> Tickets = new List<Ticket>();
         private int TotalTickets { get; set; }
         private float Price { get; set; }
 
@@ -38,6 +38,20 @@ namespace TicketingSystem
             {
                 int id = Convert.ToInt32(s);
                 Console.WriteLine(id);
+
+                foreach (Ticket t in Program.AllTickets)
+                {
+                    if (id == t.Id)
+                    {
+                        Tickets.Add(t);
+                        break;
+                    }
+                }
+            }
+
+            foreach (Ticket t in Tickets)
+            {
+                Console.WriteLine(t.Name);
             }
         }
     }
