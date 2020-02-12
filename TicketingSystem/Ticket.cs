@@ -15,13 +15,22 @@ namespace TicketingSystem
         public string Name { get; set; }
 
         //date and time the ticket is valid
-        public long Date { get; set; }
+        public DateTime Date { get; set; }
 
-        public int Price { get; set; }
+        public float Price { get; set; }
 
         public string Information { get; set; }
 
         public bool ForSale { get; set; }
 
+        public Ticket(int id, string name, DateTime date, float price, string info, bool forSale)
+        {
+            this.Id = id;
+            this.Name = name;
+            this.Date = date;
+            this.Price = price;
+            this.Information = info;
+            this.ForSale = forSale;
+        }
     }
 }

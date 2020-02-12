@@ -33,10 +33,12 @@ namespace TicketingSystem
 
         public void getInformationFromTicketIDs(string ids)
         {
-            string[] id = ids.Split(',');
-            Console.WriteLine(id[0]);
-            Console.WriteLine(id[1]);
-            Console.WriteLine(id[2]);
+            string[] idArray = ids.Split(',');
+            foreach(string s in idArray)
+            {
+                int id = Convert.ToInt32(s);
+                Console.WriteLine(id);
+            }
         }
     }
 }
