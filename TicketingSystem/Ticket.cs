@@ -21,7 +21,7 @@ namespace TicketingSystem
 
         public string Information { get; set; }
 
+        public bool ForSale { get; set; }
 
-        
     }
 }

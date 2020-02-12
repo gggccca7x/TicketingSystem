@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -15,7 +16,23 @@ namespace TicketingSystem
         //if open ticket - can see additional information about the ticket and can either amend details or cancel or go back
         static void Main(string[] args)
         {
-            
+            Program program = new Program();
+            program.getUserFromJSON("{\"Id\":1,\"Name\":\"George Cox\",\"TicketIDs\":\"2,1,3\"}");
+           
+        }
+
+        private void getUserFromJSON(string strJSON)
+        {
+            try
+            {
+                var user = JsonConvert.DeserializeObject<User>(strJSON);
+
+                user.getInformationFromTicketIDs(user.TicketIDs);
+            }
+            catch(Exception ex)
+            {
+                Console.Write("JSON deserialiation problem: " + ex.Message.ToString());
+            }
         }
     }
 }
