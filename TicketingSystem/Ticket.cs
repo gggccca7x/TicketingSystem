@@ -21,7 +21,7 @@ namespace TicketingSystem
 
         public string Information { get; set; }
 
-        public bool ForSale { get; set; }
+        public bool IsForSale { get; set; }
 
         public Ticket(int id, string name, DateTime date, float price, string info, bool forSale)
         {
@@ -30,7 +30,7 @@ namespace TicketingSystem
             this.Date = date;
             this.Price = price;
             this.Information = info;
-            this.ForSale = forSale;
+            this.IsForSale = forSale;
         }
     }
 }

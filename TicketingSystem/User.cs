@@ -23,35 +23,54 @@ namespace TicketingSystem
     //sum price of tickets
     class User
     {
+        //information for from JSON object
         public int Id { get; set; }
         public string Name { get; set; }
         public string TicketIDs { get; set; }
 
-        private List<Ticket> Tickets = new List<Ticket>();
-        private int TotalTickets { get; set; }
-        private float Price { get; set; }
+        //information got from ticket ids string
+        public List<Ticket> Tickets = new List<Ticket>();
+        public int TotalTickets { get; set; } = 0;
+        public float Price { get; set; } = 0.0f;
 
-        public void getInformationFromTicketIDs(string ids)
+        public void GetInformationFromTicketIDs(string ids)
         {
             string[] idArray = ids.Split(',');
             foreach(string s in idArray)
             {
                 int id = Convert.ToInt32(s);
-                Console.WriteLine(id);
+                //Console.WriteLine(id);
 
                 foreach (Ticket t in Program.AllTickets)
                 {
                     if (id == t.Id)
                     {
-                        Tickets.Add(t);
+                        AddTicket(t);
                         break;
                     }
                 }
             }
+        }
 
-            foreach (Ticket t in Tickets)
+        //add ticket to the list
+        public void AddTicket(Ticket ticket)
+        {
+            Tickets.Add(ticket);
+            Price += ticket.Price;
+            TotalTickets++;
+        }
+
+        //loop through list of tickets and remove first ticket matching id of parameter
+        public void RemoveTicket(Ticket ticket)
+        {
+            int idToRemove = ticket.Id;
+            foreach(Ticket t in Tickets)
             {
-                Console.WriteLine(t.Name);
+                if(t.Id == idToRemove)
+                {
+                    Tickets.Remove(t);
+                    return;
+                }
             }
         }
     }
