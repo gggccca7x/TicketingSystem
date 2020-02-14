@@ -5,6 +5,23 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
+/**
+ * This project is an event Ticketing System.
+ * It allows a user to view their reserved tickets, add or delete a ticket, and view information on a ticket.
+ * 
+ * The first thing I did was write a 'User' class. This class holds information about the user, such as name. 
+ * It also holds a List of tickets, I chose List as the size of tickets the user has will vary with adding/removing of tickets.
+ * From the list of tickets, you can get and display information such as the total price and the total number of tickets the user has.
+ * 
+ * The next thing I did was make a 'Ticket' class. This class holds inforamtion - such as name, price, additional info - of a ticket.
+ * It also has a bool 'forSale' to indicate if the ticket is for sale or not. If it is for sale when the user wants to buy a new ticket it will appear in the List.
+ * 
+ * The 'UI' class was the next class I made. This controls what text comes up on the console. Using an Enum, and I able to control the 'state'.
+ * For example, the state 'HOME_SCREEN' gives the user options to reserve a new ticket, view their purchased tickets and exit.
+ * The UI has 2 public methods, one to listen to the user input and update the backend information, and one to change the UI based on the selection.
+ * 
+ */
+
 namespace TicketingSystem
 {
     class Program
@@ -38,7 +55,7 @@ namespace TicketingSystem
             }
         }
 
-        //populate the arraylist of the avaiable tickets
+        //populate the arraylist of the avaiable tickets - *simulating getting from a persistent data store*
         private static void PopulateTicketList()
         {
             AllTickets.Add(new Ticket(1, "ticket", DateTime.Now, 10.00f, "additional info", false));

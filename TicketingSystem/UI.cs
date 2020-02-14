@@ -54,7 +54,16 @@ namespace TicketingSystem
                 case Display.VIEWING_TICKETS:
                     Console.WriteLine("Choose a ticket to view or go back");
                     //loop through your tickets and give number before them - choosing one with go into detail about it
-                    
+                    int j = 1;
+                    foreach (Ticket t in user.Tickets)
+                    {
+                        Console.WriteLine(j + ") " + t.Name);
+                        Console.WriteLine(t.Price);
+                        Console.WriteLine(t.Date);
+                        Console.WriteLine("------------");
+                        j++;
+                    }
+                    Console.WriteLine(j + ") Cancel");
                     Console.WriteLine("Exit");
                     break;
                 case Display.VIEW_SINGLE_TICKET:
@@ -80,7 +89,6 @@ namespace TicketingSystem
                     ProcessInputHomeScreen(input);
                     break;
                 case Display.RESERVE_TICKET:
-                    Console.WriteLine("14/2/20: " + input);
                     int i = 1;
                     List<Ticket> Tickets = new List<Ticket>();
                     foreach (Ticket t in Program.AllTickets)
@@ -94,6 +102,7 @@ namespace TicketingSystem
                     ProcessInputReserveTicket(input, Tickets, ref user, i);
                     break;
                 case Display.VIEWING_TICKETS:
+
                     break;
                 case Display.VIEW_SINGLE_TICKET:
                     break;
@@ -125,7 +134,7 @@ namespace TicketingSystem
             if(input < lastInput) //one of the tickets selected
             {
                 Ticket t = tickets.ElementAt(input - 1);
-                Console.WriteLine("Thank you, reserved tickcet: " + t.Name);
+                Console.WriteLine("Thank you, reserved ticket: " + t.Name);
                 user.AddTicket(t);
                 CurrentDisplay = Display.HOME_SCREEN;
             }
