@@ -13,7 +13,6 @@ namespace TicketingSystem
 
         //while isRunning is true, the application will prompt the user for an integer input until the user exits the with the exit option in the main menu
         public static bool IsRunning = true;
-        private static int Input = -1;
 
         //user signs in a gets list of tickets, displayed is the users name, number of tickets currently owned and sum price of these tickets
         //actions user can take: 1) reserve new ticket, 2) view purchased tickets, 3) exit
@@ -26,12 +25,14 @@ namespace TicketingSystem
             //getting persistent data from a database
             User user = Program.GetUserFromJSON("{\"Id\":1,\"Name\":\"George Cox\",\"TicketIDs\":\"2,1,4\"}");
             UI ui = new UI();
-            while(IsRunning)
+            string input = "-1";
+            while (IsRunning)
             {
 
-                Console.Write("Input:");
-                string input = Console.ReadLine();
                 ui.ChangeDisplay(Convert.ToInt32(input), ref user.Tickets, ref user);
+                Console.Write("Input:");
+                input = Console.ReadLine();
+                ui.ProcessInput(Convert.ToInt32(input), ref user.Tickets, ref user);
 
                 //IsRunning = false;
             }

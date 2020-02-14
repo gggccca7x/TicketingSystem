@@ -33,22 +33,25 @@ namespace TicketingSystem
                     Console.WriteLine("1) Reserve new ticket");
                     Console.WriteLine("2) View tickets");
                     Console.WriteLine("3) Exit");
-                    ProcessInputHomeScreen(input);
+                    //ProcessInputHomeScreen(input);
                     break;
                 case Display.RESERVE_TICKET:
                     Console.WriteLine("Choose a ticket to reserve");
                     //displays a list of avaibale to purchase tickets
+                    int i = 1;
                     foreach(Ticket t in Program.AllTickets)
                     {
                         if (t.IsForSale)
                         {
-                            Console.WriteLine(t.Name);
+                            Console.WriteLine(i + ") " + t.Name);
                             Console.WriteLine(t.Price);
                             Console.WriteLine(t.Date);
                             Console.WriteLine("------------");
+                            i++;
                         }
                     }
-                    Console.WriteLine("Cancel");
+                    Console.WriteLine(i + ") Cancel");
+                    ProcessInputReserveTicket(input, ref tickets, ref user, i);
                     break;
                 case Display.VIEWING_TICKETS:
                     Console.WriteLine("Choose a ticket to view or go back");
@@ -70,6 +73,32 @@ namespace TicketingSystem
             }
         }
 
+        public void ProcessInput(int input, ref List<Ticket> tickets, ref User user)
+        {
+            Console.WriteLine();
+            switch (CurrentDisplay)
+            {
+                case Display.HOME_SCREEN:
+                    ProcessInputHomeScreen(input);
+                    break;
+                case Display.RESERVE_TICKET:
+                    int i = 1;
+                    foreach (Ticket t in Program.AllTickets)
+                    {
+                        if (t.IsForSale)
+                        {
+                            i++;
+                        }
+                    }
+                    ProcessInputReserveTicket(input, ref tickets, ref user, i);
+                    break;
+                case Display.VIEWING_TICKETS:
+                    break;
+                case Display.VIEW_SINGLE_TICKET:
+                    break;
+            }
+        }
+
         //change the UI when from the home screen
         private void ProcessInputHomeScreen(int input)
         {
@@ -84,13 +113,26 @@ namespace TicketingSystem
                 case 3: //exit
                     Program.IsRunning = false;
                     break;
+                default: //invalid input
+                    break;
             }
         }
 
-        //
-        private void ProcessInputReserveTicket()
+        //change the UI from the reserve ticket screen, 1st few inputs are the list of tickets, last input is cancel
+        private void ProcessInputReserveTicket(int input, ref List<Ticket> tickets, ref User user, int lastInput)
         {
+            if(input < lastInput) //one of the tickets selected
+            {
+                CurrentDisplay = Display.VIEW_SINGLE_TICKET;
+            }
+            else if(input == lastInput) //go back selected
+            {
+                CurrentDisplay = Display.HOME_SCREEN;
+            }
+            else //invalid input
+            {
 
+            }
         }
     }
 }
