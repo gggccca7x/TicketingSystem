@@ -80,6 +80,7 @@ namespace TicketingSystem
                     ProcessInputHomeScreen(input);
                     break;
                 case Display.RESERVE_TICKET:
+                    Console.WriteLine("14/2/20: " + input);
                     int i = 1;
                     List<Ticket> Tickets = new List<Ticket>();
                     foreach (Ticket t in Program.AllTickets)
@@ -123,7 +124,10 @@ namespace TicketingSystem
         {
             if(input < lastInput) //one of the tickets selected
             {
-                CurrentDisplay = Display.VIEW_SINGLE_TICKET;
+                Ticket t = tickets.ElementAt(input - 1);
+                Console.WriteLine("Thank you, reserved tickcet: " + t.Name);
+                user.AddTicket(t);
+                CurrentDisplay = Display.HOME_SCREEN;
             }
             else if(input == lastInput) //go back selected
             {
