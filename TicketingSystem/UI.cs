@@ -33,7 +33,6 @@ namespace TicketingSystem
                     Console.WriteLine("1) Reserve new ticket");
                     Console.WriteLine("2) View tickets");
                     Console.WriteLine("3) Exit");
-                    //ProcessInputHomeScreen(input);
                     break;
                 case Display.RESERVE_TICKET:
                     Console.WriteLine("Choose a ticket to reserve");
@@ -51,7 +50,6 @@ namespace TicketingSystem
                         }
                     }
                     Console.WriteLine(i + ") Cancel");
-                    ProcessInputReserveTicket(input, ref tickets, ref user, i);
                     break;
                 case Display.VIEWING_TICKETS:
                     Console.WriteLine("Choose a ticket to view or go back");
@@ -73,7 +71,7 @@ namespace TicketingSystem
             }
         }
 
-        public void ProcessInput(int input, ref List<Ticket> tickets, ref User user)
+        public void ProcessInput(int input, ref User user)
         {
             Console.WriteLine();
             switch (CurrentDisplay)
@@ -83,14 +81,16 @@ namespace TicketingSystem
                     break;
                 case Display.RESERVE_TICKET:
                     int i = 1;
+                    List<Ticket> Tickets = new List<Ticket>();
                     foreach (Ticket t in Program.AllTickets)
                     {
                         if (t.IsForSale)
                         {
+                            Tickets.Add(t);
                             i++;
                         }
                     }
-                    ProcessInputReserveTicket(input, ref tickets, ref user, i);
+                    ProcessInputReserveTicket(input, Tickets, ref user, i);
                     break;
                 case Display.VIEWING_TICKETS:
                     break;
@@ -119,7 +119,7 @@ namespace TicketingSystem
         }
 
         //change the UI from the reserve ticket screen, 1st few inputs are the list of tickets, last input is cancel
-        private void ProcessInputReserveTicket(int input, ref List<Ticket> tickets, ref User user, int lastInput)
+        private void ProcessInputReserveTicket(int input, List<Ticket> tickets, ref User user, int lastInput)
         {
             if(input < lastInput) //one of the tickets selected
             {

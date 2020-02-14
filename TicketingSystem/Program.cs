@@ -32,7 +32,7 @@ namespace TicketingSystem
                 ui.ChangeDisplay(Convert.ToInt32(input), ref user.Tickets, ref user);
                 Console.Write("Input:");
                 input = Console.ReadLine();
-                ui.ProcessInput(Convert.ToInt32(input), ref user.Tickets, ref user);
+                ui.ProcessInput(Convert.ToInt32(input), ref user);
 
                 //IsRunning = false;
             }
