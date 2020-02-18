@@ -9,6 +9,11 @@ using System.Threading.Tasks;
  * This project is an event Ticketing System.
  * It allows a user to view their reserved tickets, add or delete a ticket, and view information on a ticket.
  * 
+ * This project is incomplete. I can add tickets to the current List of tickets, but I have not completed removing tickets or viewing more information about a ticket.
+ * I have not tidied up the UI or formatted my Strings.
+ * A also have not done any exception handling, I am aware that the program would crash if the user inputs a letter. 
+ * I don't think it show much wrapping everything with try/catch blocks and I didn't want to spend too much time on this project considering I spent about 4 hours and the documentation recommended 2/3.
+ * 
  * The first thing I did was write a 'User' class. This class holds information about the user, such as name. 
  * It also holds a List of tickets, I chose List as the size of tickets the user has will vary with adding/removing of tickets.
  * From the list of tickets, you can get and display information such as the total price and the total number of tickets the user has.
@@ -19,6 +24,10 @@ using System.Threading.Tasks;
  * The 'UI' class was the next class I made. This controls what text comes up on the console. Using an Enum, and I able to control the 'state'.
  * For example, the state 'HOME_SCREEN' gives the user options to reserve a new ticket, view their purchased tickets and exit.
  * The UI has 2 public methods, one to listen to the user input and update the backend information, and one to change the UI based on the selection.
+ * 
+ * To simulate getting the data from a data store, I used JSON.
+ * 
+ * Scaleability: If the user purchases a lot of tickets, there's no way to ordering them. To order my tickets I would implement Comparable interface and override the CompareTo method.
  * 
  */
 
