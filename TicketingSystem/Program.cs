@@ -40,19 +40,11 @@ namespace TicketingSystem
         //while isRunning is true, the application will prompt the user for an integer input until the user exits the with the exit option in the main menu
         public static bool IsRunning = true;
 
+        //add/remove await to overlap commands
         static async void Test()
         {
-            //await REST.HttpGet();
-            //await REST.HttpPost();
-            Task.Run(() => REST.HttpGet());
-            //REST.HttpPost();
-        }
-        static async Task Test2()
-        {
-            //await REST.HttpGet();
-            //await REST.HttpPost();
-            //REST.HttpGet();
-            Task.Run(() => REST.HttpPost());
+            await Task.Run(() => REST.HttpGet());
+            await Task.Run(() => REST.HttpPost());
         }
 
         //user signs in a gets list of tickets, displayed is the users name, number of tickets currently owned and sum price of these tickets
@@ -63,7 +55,6 @@ namespace TicketingSystem
         static void Main(string[] args)
         {
             Test();
-            Test2();
 
             PopulateTicketList();
             //getting persistent data from a database
