@@ -29,6 +29,7 @@ using System.Threading.Tasks;
  * 
  * Scaleability: If the user purchases a lot of tickets, there's no way to ordering them. To order my tickets I would implement Comparable interface and override the CompareTo method.
  * 
+ * I made a Http class which calls Asynchronously. I had to research this and look up how to do it. Using the keyword await, I am waiting for the first Task to run.
  */
 
 namespace TicketingSystem
@@ -43,7 +44,12 @@ namespace TicketingSystem
         //add/remove await to overlap commands
         static async void Test()
         {
-            await Task.Run(() => REST.HttpGet());
+            int code = await Task.Run(() => REST.HttpGet());
+            Console.WriteLine("Awaiting get command: " + code);
+            if(code == 200)
+            {
+                Console.WriteLine("HttpGet complete, can proceed");
+            }
             await Task.Run(() => REST.HttpPost());
         }
 

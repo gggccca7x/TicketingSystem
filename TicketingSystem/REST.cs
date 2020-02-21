@@ -17,7 +17,7 @@ namespace TicketingSystem
         {
             for(int i = 0; i < 100; i++)
             {
-                Console.WriteLine("a");
+                //Console.WriteLine("a");
             }
 
             return 200;
@@ -30,7 +30,7 @@ namespace TicketingSystem
         {
             for (int i = 0; i < 100; i++)
             {
-                Console.WriteLine("b");
+                //Console.WriteLine("b");
             }
 
             return 201;
@@ -43,7 +43,7 @@ namespace TicketingSystem
         {
             for (int i = 0; i < 100; i++)
             {
-                Console.WriteLine("c");
+                //Console.WriteLine("c");
             }
 
             return 201;
@@ -57,7 +57,7 @@ namespace TicketingSystem
         {
             for (int i = 0; i < 100; i++)
             {
-                Console.WriteLine("d");
+                //Console.WriteLine("d");
             }
 
             return 200;
