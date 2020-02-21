@@ -40,6 +40,21 @@ namespace TicketingSystem
         //while isRunning is true, the application will prompt the user for an integer input until the user exits the with the exit option in the main menu
         public static bool IsRunning = true;
 
+        static async void Test()
+        {
+            //await REST.HttpGet();
+            //await REST.HttpPost();
+            Task.Run(() => REST.HttpGet());
+            //REST.HttpPost();
+        }
+        static async Task Test2()
+        {
+            //await REST.HttpGet();
+            //await REST.HttpPost();
+            //REST.HttpGet();
+            Task.Run(() => REST.HttpPost());
+        }
+
         //user signs in a gets list of tickets, displayed is the users name, number of tickets currently owned and sum price of these tickets
         //actions user can take: 1) reserve new ticket, 2) view purchased tickets, 3) exit
         //if 1) - user can select from a list of tickets or go back
@@ -47,6 +62,9 @@ namespace TicketingSystem
         //if open ticket - can see additional information about the ticket and can either amend details or cancel or go back
         static void Main(string[] args)
         {
+            Test();
+            Test2();
+
             PopulateTicketList();
             //getting persistent data from a database
             User user = Program.GetUserFromJSON("{\"Id\":1,\"Name\":\"George Cox\",\"TicketIDs\":\"2,1,4\"}");
